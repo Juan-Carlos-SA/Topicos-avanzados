@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { number } = require('yup');
 
 const Producto=mongoose.Schema({
     nombre:String,

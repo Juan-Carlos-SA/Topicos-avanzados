@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path=require("path")
 
 //importar rutas
-const productosRoutes = require('./routes/productos.routes');
+const productosRoutes = require('./routes/Productos.routes');
 
 const app = express();
 
