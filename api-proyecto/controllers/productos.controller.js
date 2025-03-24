@@ -39,17 +39,22 @@ async function delProducto(req, res) {
             return res.status(404).send({ message: "Producto no encontrado" });
         }
 
-        const imagePath = path.join(__dirname, '..', producto.imagep);
+        // Verifica si el producto tiene una imagen antes de intentar eliminarla
+        if (producto.imagep) {
+            const imagePath = path.join(__dirname, '..', producto.imagep);
 
-        fs.unlink(imagePath, (error) => {
-            if (error) {
-                return res.status(500).send({ message: "Error al eliminar la imagen" });
-            }
-        });
+            fs.unlink(imagePath, (error) => {
+                if (error) {
+                    console.error("Error al eliminar la imagen:", error);
+                    return res.status(500).send({ message: "Error al eliminar la imagen" });
+                }
+            });
+        }
 
         await Producto.findByIdAndDelete(id);
         res.status(200).send({ message: "Producto eliminado" });
     } catch (error) {
+        console.error("Error al eliminar producto:", error);
         res.status(500).send({ message: "Error al eliminar" });
     }
 }

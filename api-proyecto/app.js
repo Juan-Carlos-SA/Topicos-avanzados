@@ -10,7 +10,7 @@ const app = express();
 
 //parsear la infomaciòn
 app.use(bodyParser.urlencoded({ extended: true }));
-app. use(bodyParser.json());
+app.use(bodyParser.json());
 
 //configurar carpeta de carga de files
 //app.use(express.static('uploads'));
